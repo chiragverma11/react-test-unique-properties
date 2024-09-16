@@ -41,11 +41,13 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
       { className, inputProps, countrySelectClassName, onChange, ...props },
       ref,
     ) => {
-      const inputComponent = () => {
-        return <InputComponent {...inputProps} />;
-      };
+      const InputComponent_ = React.forwardRef<HTMLInputElement, InputProps>(
+        (inputComponentProps) => {
+          return <InputComponent {...inputComponentProps} {...inputProps} />;
+        },
+      );
 
-      const countrySelectComponent = (props: CountrySelectProps) => {
+      const CountrySelectComponent = (props: CountrySelectProps) => {
         return <CountrySelect className={countrySelectClassName} {...props} />;
       };
 
@@ -54,9 +56,11 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
           ref={ref}
           className={cn("flex", className)}
           flagComponent={FlagComponent}
-          countrySelectComponent={countrySelectComponent}
-          inputComponent={inputComponent}
-          onChange={(value) => onChange?.(value || "")}
+          countrySelectComponent={CountrySelectComponent}
+          inputComponent={InputComponent_}
+          onChange={(value) =>
+            onChange?.(value || ("" as Parameters<typeof onChange>[0]))
+          }
           {...props}
         />
       );

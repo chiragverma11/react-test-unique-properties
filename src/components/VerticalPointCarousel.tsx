@@ -97,7 +97,7 @@ const VerticalPointCarousel: FC<VerticalPointCarouselProps> = ({
 
         <div
           ref={containerRef}
-          className="h-[400px] w-full overflow-y-scroll no-scrollbar"
+          className="h-[300px] w-full overflow-y-scroll no-scrollbar"
         >
           <ul className="mx-auto w-fit flex items-center justify-center flex-col gap-16">
             {points.map((point, index) => {
@@ -141,8 +141,6 @@ const Points: FC<Pick<VerticalPointCarouselProps, "points">> = ({ points }) => {
   const { elements, activeElement } = React.useContext(
     VerticalPointCarouselContext,
   );
-
-  console.log(activeElement);
 
   return (
     <div className="flex flex-col relative lg:flex-row w-full justify-between items-center">

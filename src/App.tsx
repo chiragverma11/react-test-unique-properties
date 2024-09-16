@@ -6,7 +6,6 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CircleCheckBig } from "lucide-react";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "./components/ui/button";
@@ -27,10 +26,16 @@ import {
   listPropertySchema,
 } from "./lib/validation/homepage.validation";
 import { RadioGroup, RadioGroupItem } from "./components/ui/radio-group";
-import { propertyTypes, serviceTypes } from "./lib/constants";
+import {
+  propertyLocations,
+  propertyTypes,
+  serviceTypes,
+} from "./lib/constants";
 import { Checkbox } from "./components/ui/checkbox";
 import React from "react";
 import VerticalPointCarousel from "./components/VerticalPointCarousel";
+import { CircleCheckBig } from "lucide-react";
+import Combobox from "./components/ui/combobox";
 
 const sectionTwoPoints: { title: string; description: string }[] = [
   {
@@ -310,6 +315,7 @@ const ListPropertyCard: FC<ListPropertyCardSchema> = ({
                   <FormItem className="grid gap-2">
                     <FormControl>
                       <PhoneInput
+                        // onChange={(value) => field.setValue(value)}
                         inputProps={{
                           className:
                             "py-5 h-12 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40",
@@ -455,6 +461,18 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                 />
               </div>
               {/* TODO: Add property type selector */}
+              <Combobox
+                value={form.watch("propertyInfo.location")}
+                onValueChange={(value) =>
+                  form.setValue("propertyInfo.location", value)
+                }
+                className="w-full h-12 py-5 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40 font-light"
+                items={propertyLocations.flatMap((location) => ({
+                  label: location,
+                  value: location,
+                }))}
+                name="locations"
+              />
               <FormField
                 control={form.control}
                 name="propertyInfo.propertyType"
