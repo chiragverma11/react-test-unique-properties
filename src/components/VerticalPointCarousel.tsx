@@ -102,8 +102,8 @@ const VerticalPointCarousel: FC<VerticalPointCarouselProps> = ({
           ref={containerRef}
           className={cn(
             "no-scrollbar max-h-screen w-[70%] overflow-y-scroll lg:h-[300px] lg:w-full",
-            `h-[${points.length * 100}px]`,
           )}
+          style={{ height: `${points.length * 100}px` }}
         >
           <ul className="mx-auto flex w-fit flex-col items-center justify-center gap-16">
             {points.map((point, index) => {

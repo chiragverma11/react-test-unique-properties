@@ -30,7 +30,7 @@ type PhoneInputProps = Omit<
   "onChange" | "value"
 > &
   Omit<RPNInput.Props<typeof RPNInput.default>, "onChange"> & {
-    onChange?: (value: RPNInput.Value) => void;
+    onChange: (value: RPNInput.Value) => void;
     inputProps?: InputProps;
     countrySelectClassName?: string;
   };
@@ -41,11 +41,14 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
       { className, inputProps, countrySelectClassName, onChange, ...props },
       ref,
     ) => {
-      const InputComponent_ = React.forwardRef<HTMLInputElement, InputProps>(
-        (inputComponentProps) => {
-          return <InputComponent {...inputComponentProps} {...inputProps} />;
-        },
-      );
+      const CustomInputComponent = React.forwardRef<
+        HTMLInputElement,
+        InputProps
+      >(({ ...inputComponentProps }, ref) => {
+        return (
+          <InputComponent {...inputComponentProps} ref={ref} {...inputProps} />
+        );
+      });
 
       const CountrySelectComponent = (props: CountrySelectProps) => {
         return <CountrySelect className={countrySelectClassName} {...props} />;
@@ -57,10 +60,8 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
           className={cn("flex", className)}
           flagComponent={FlagComponent}
           countrySelectComponent={CountrySelectComponent}
-          inputComponent={InputComponent_}
-          onChange={(value) =>
-            onChange?.(value || ("" as Parameters<typeof onChange>[0]))
-          }
+          inputComponent={CustomInputComponent}
+          onChange={onChange}
           {...props}
         />
       );
@@ -110,7 +111,7 @@ const CountrySelect = ({
           type="button"
           variant={"outline"}
           className={cn(
-            "flex gap-1 bg-foreground/5 rounded-e-none rounded-s-lg px-3",
+            "flex gap-1 rounded-e-none rounded-s-lg bg-foreground/5 px-3",
             className,
           )}
           disabled={disabled}
@@ -125,11 +126,15 @@ const CountrySelect = ({
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] p-0">
+      <PopoverContent
+        collisionPadding={12}
+        align="start"
+        className="w-[300px] p-0"
+      >
         <Command>
+          <CommandInput placeholder="Search country..." />
           <CommandList>
             <ScrollArea className="h-72">
-              <CommandInput placeholder="Search country..." />
               <CommandEmpty>No country found.</CommandEmpty>
               <CommandGroup>
                 {options
@@ -146,7 +151,7 @@ const CountrySelect = ({
                       />
                       <span className="flex-1 text-sm">{option.label}</span>
                       {option.value && (
-                        <span className="text-foreground/50 text-sm">
+                        <span className="text-sm text-foreground/50">
                           {`+${RPNInput.getCountryCallingCode(option.value)}`}
                         </span>
                       )}
@@ -171,7 +176,7 @@ const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
   const Flag = flags[country];
 
   return (
-    <span className="bg-foreground/20 flex h-4 w-6 overflow-hidden rounded-sm">
+    <span className="flex h-4 w-6 overflow-hidden rounded-sm bg-foreground/20">
       {Flag && <Flag title={countryName} />}
     </span>
   );

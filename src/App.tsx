@@ -315,20 +315,20 @@ const ListPropertyCard: FC<ListPropertyCardSchema> = ({
                   <FormItem className="grid gap-2">
                     <FormControl>
                       <PhoneInput
-                        // onChange={(value) => field.setValue(value)}
                         inputProps={{
                           className:
                             "py-5 h-12 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40",
                           placeholder: "Mobile*",
                         }}
                         countrySelectClassName="h-12 focus-visible:ring-0 focus-visible:ring-transparent focus:visible:border focus-visible:border-black/40"
+                        defaultCountry="IN"
                         {...field}
                       />
                     </FormControl>
                   </FormItem>
                 )}
               />
-              <Button className="mx-auto w-fit bg-brand-primary-foreground px-10">
+              <Button className="mx-auto w-fit bg-brand-primary-foreground px-10 hover:bg-brand-primary-foreground/90">
                 Next
               </Button>
             </div>
@@ -448,11 +448,12 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                       <FormControl>
                         <PhoneInput
                           inputProps={{
-                            placeholder: "Mobile*",
                             className:
                               "py-5 h-12 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40",
+                            placeholder: "Mobile*",
                           }}
-                          countrySelectClassName="h-12 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40"
+                          countrySelectClassName="h-12 focus-visible:ring-0 focus-visible:ring-transparent focus:visible:border focus-visible:border-black/40"
+                          defaultCountry="IN"
                           {...field}
                         />
                       </FormControl>
@@ -460,7 +461,6 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                   )}
                 />
               </div>
-              {/* TODO: Add property type selector */}
               <Combobox
                 value={form.watch("propertyInfo.location")}
                 onValueChange={(value) =>
@@ -518,7 +518,7 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                     </FormLabel>
                     <FormControl>
                       <RadioGroup
-                        onValueChange={field.onChange}
+                        onValueChange={(value) => field.onChange(Number(value))}
                         defaultValue={`${field.value}`}
                         className="flex flex-wrap justify-start gap-x-6 gap-y-2"
                       >
@@ -532,7 +532,7 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                               <FormControl>
                                 <RadioGroupItem
                                   className="h-5 w-5 border border-black/40"
-                                  value={`${i}`}
+                                  value={`${i + 1}`}
                                 />
                               </FormControl>
                               <FormLabel className="font-light">
@@ -550,27 +550,37 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
               <FormField
                 control={form.control}
                 name="service"
-                render={({ field }) => (
+                render={() => (
                   <FormItem>
                     <FormLabel className="text-lg font-light text-brand-secondary-foreground/60">
                       I am looking to *
                     </FormLabel>
                     <div className="flex flex-wrap justify-start gap-x-6 gap-y-2">
                       {serviceTypes.map((serviceType, i) => (
-                        <FormItem
+                        <FormField
                           key={serviceType}
-                          className="flex items-center space-x-2 space-y-0"
-                        >
-                          <FormControl key={serviceType}>
-                            <Checkbox
-                              checked={field.value === serviceType}
-                              onCheckedChange={field.onChange}
-                            />
-                          </FormControl>
-                          <FormLabel className="font-light">
-                            {services[i]}
-                          </FormLabel>
-                        </FormItem>
+                          control={form.control}
+                          name="service"
+                          render={({ field }) => (
+                            <FormItem
+                              key={serviceType}
+                              className="flex items-center space-x-2 space-y-0"
+                            >
+                              <FormControl>
+                                <Checkbox
+                                  checked={field.value === serviceType}
+                                  onCheckedChange={(value) => {
+                                    if (value) field.onChange(serviceType);
+                                    else field.onChange("");
+                                  }}
+                                />
+                              </FormControl>
+                              <FormLabel className="font-light">
+                                {services[i]}
+                              </FormLabel>
+                            </FormItem>
+                          )}
+                        />
                       ))}
                     </div>
                   </FormItem>
