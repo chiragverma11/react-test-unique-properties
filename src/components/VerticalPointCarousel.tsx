@@ -88,22 +88,28 @@ const VerticalPointCarousel: FC<VerticalPointCarouselProps> = ({
   return (
     <VerticalPointCarouselContext.Provider value={state}>
       <div
-        className={cn("w-full flex flex-col gap-12 items-center", className)}
+        className={cn(
+          "flex w-full items-start gap-0 lg:flex-col lg:gap-12",
+          className,
+        )}
         {...props}
       >
-        <div className="w-full">
+        <div className="w-[30%] lg:w-full">
           <Points points={points} />
         </div>
 
         <div
           ref={containerRef}
-          className="h-[300px] w-full overflow-y-scroll no-scrollbar"
+          className={cn(
+            "no-scrollbar max-h-screen w-[70%] overflow-y-scroll lg:h-[300px] lg:w-full",
+            `h-[${points.length * 100}px]`,
+          )}
         >
-          <ul className="mx-auto w-fit flex items-center justify-center flex-col gap-16">
+          <ul className="mx-auto flex w-fit flex-col items-center justify-center gap-16">
             {points.map((point, index) => {
               return (
                 <li
-                  className="flex w-[85%] mx-auto justify-between items-center gap-8"
+                  className="mx-auto flex flex-col items-center justify-between gap-1 lg:w-[85%] lg:flex-row lg:gap-8"
                   key={point.title + index}
                   ref={(element) => {
                     if (element) {
@@ -112,18 +118,18 @@ const VerticalPointCarousel: FC<VerticalPointCarouselProps> = ({
                   }}
                   data-index={index}
                 >
-                  <div className="w-1/2">
+                  <div className="w-full lg:w-1/2">
                     <img
-                      className="w-full h-full"
+                      className="h-full w-full"
                       src={point.display.imageSrc}
                       alt={point.title}
                     />
                   </div>
-                  <div className="w-1/2 space-y-2 p-6">
-                    <p className="text-3xl tracking-tight w-11/12">
+                  <div className="py-y w-full space-y-2 lg:w-1/2 lg:p-6">
+                    <p className="w-full text-2xl tracking-tight lg:w-11/12 lg:text-3xl">
                       {point.display.title}
                     </p>
-                    <p className="font-light w-11/12 text-justify">
+                    <p className="w-full text-justify font-light lg:w-11/12">
                       {point.display.description}
                     </p>
                   </div>
@@ -143,23 +149,24 @@ const Points: FC<Pick<VerticalPointCarouselProps, "points">> = ({ points }) => {
   );
 
   return (
-    <div className="flex flex-col relative lg:flex-row w-full justify-between items-center">
-      <span className="w-[90%] -z-0 bg-white h-1.5 absolute translate-y-1/2 -translate-x-1/2 top-[calc(50%-20px)] left-1/2" />
+    <div className="relative flex w-full flex-col items-center justify-between gap-4 lg:flex-row lg:gap-0">
+      <span className="absolute left-1/2 top-[calc(50%-20px)] -z-0 hidden h-1.5 w-[90%] -translate-x-1/2 translate-y-1/2 bg-white lg:block" />
+
       {points.map((point, index) => (
         <div
-          className="cursor-pointer flex flex-col items-center gap-2"
+          className="flex cursor-pointer flex-col items-center gap-1.5"
           onClick={() => {
             elements[index]?.scrollIntoView({
               behavior: "smooth",
               block: "start",
-              inline: "start",
+              inline: "end",
             });
           }}
           key={point.title + index}
         >
           <div
             className={cn(
-              "h-14 w-14 z-10 rounded-full bg-white flex items-center transition-colors justify-center",
+              "z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white transition-colors",
               index === Number(activeElement?.getAttribute("data-index")) &&
                 "bg-brand-primary-foreground",
             )}
@@ -169,7 +176,7 @@ const Points: FC<Pick<VerticalPointCarouselProps, "points">> = ({ points }) => {
               className={cn(
                 "h-9 transition-[filter]",
                 index === Number(activeElement?.getAttribute("data-index")) &&
-                  "invert brightness-0",
+                  "brightness-0 invert",
               )}
               alt={point.title}
             />

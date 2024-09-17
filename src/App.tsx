@@ -109,25 +109,25 @@ const processes: Pick<
 function App() {
   return (
     <>
-      <section className="bg-hero-banner bg-cover bg-fixed bg-[center_-6.7rem] bg-no-repeat h-[720px] py-16 flex flex-col justify-between items-center">
-        <img src="/logo.webp" className="h-9 mx-auto" />
-        <div className="flex justify-between p-16 items-center">
+      <section className="flex h-screen max-h-[1080px] flex-col items-center justify-between bg-[start_-6.7rem] bg-hero-banner bg-cover bg-fixed bg-no-repeat py-12 lg:h-[720px] lg:bg-[center_-6.7rem] lg:py-16">
+        <img src="/logo.webp" className="mx-auto mb-20 h-9" />
+        <div className="flex flex-col items-center justify-between gap-4 px-3 lg:flex-row lg:gap-0 lg:p-16">
           <div className="space-y-2 text-white">
-            <h1 className="text-[56px] font-medium tracking-tight leading-tight">
+            <h1 className="text-[32px] font-medium leading-tight tracking-tight lg:text-[56px]">
               Unlock Your Property's Potential
             </h1>
             <p className="font-light">
               Experience a seamless selling process with maximum returns.
             </p>
           </div>
-          <div className="w-2/4 px-4">
+          <div className="w-full lg:w-2/4 lg:px-4">
             <ListPropertyCard className="rounded" />
           </div>
         </div>
       </section>
-      <section className="p-20 flex gap-20 flex-col justify-between">
-        <div className="mx-auto space-y-2 text-center container w-full lg:w-4/6 font-medium">
-          <h2 className="text-3xl text-brand-primary-foreground">
+      <section className="flex flex-col justify-between gap-20 px-3 py-12 lg:p-20">
+        <div className="container mx-auto w-full space-y-2 text-center font-medium lg:w-4/6">
+          <h2 className="text-2xl text-brand-primary-foreground lg:text-3xl">
             Why Sell Your Property With Us?
           </h2>
           <p className="text-lg font-light text-brand-secondary-foreground">
@@ -135,14 +135,14 @@ function App() {
             selling process and maximize the value of your property.
           </p>
         </div>
-        <div className="flex justify-between items-center gap-4">
-          <div className="space-y-3 w-1/2">
+        <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
+          <div className="space-y-3 lg:w-1/2">
             {sectionTwoPoints.map((point) => {
               return (
                 <div key={point.title} className="flex justify-between">
-                  <div className="w-12 h-12 py-3">
+                  <div className="h-12 w-12 py-3">
                     <CircleCheckBig
-                      className="h-7 w-7 aspect-square mr-4 items-start"
+                      className="mr-4 aspect-square h-6 w-6 items-start lg:h-7 lg:w-7"
                       strokeWidth={3}
                     />
                   </div>
@@ -154,12 +154,12 @@ function App() {
               );
             })}
           </div>
-          <img src="/images/section-2.webp" className="w-1/2" />
+          <img src="/images/section-2.webp" className="lg:w-1/2" />
         </div>
       </section>
-      <section className="p-20 flex gap-20 flex-col justify-between bg-brand-secondary">
-        <div className="mx-auto space-y-2 text-center container w-full lg:w-4/6 font-medium">
-          <h2 className="text-3xl text-brand-primary-foreground">
+      <section className="flex flex-col justify-between gap-20 bg-brand-secondary px-2 py-12 lg:p-20">
+        <div className="container mx-auto w-full space-y-2 text-center font-medium lg:w-4/6">
+          <h2 className="text-2xl text-brand-primary-foreground">
             Our Process
           </h2>
           <p className="text-lg font-light text-brand-secondary-foreground">
@@ -169,9 +169,9 @@ function App() {
         </div>
         <VerticalPointCarousel points={processes} />
       </section>
-      <section className="p-20 flex-col justify-between">
-        <div className="mx-auto space-y-2 text-center container mb-8 w-full font-medium">
-          <h2 className="text-3xl text-brand-primary-foreground">
+      <section className="flex-col justify-between px-2 py-12 lg:p-20">
+        <div className="container mx-auto mb-8 w-full space-y-2 text-center font-medium">
+          <h2 className="text-2xl text-brand-primary-foreground">
             Partner with the best to sell your property faster.
           </h2>
           <p className="font-light text-brand-secondary-foreground">
@@ -181,52 +181,52 @@ function App() {
             achieving a swift and successful sale.
           </p>
         </div>
-        <div className="flex justify-between items-center gap-4 px-16 py-6">
+        <div className="grid grid-cols-2 gap-3 pb-6 lg:grid-cols-4 lg:px-16 lg:py-6">
           <div className="flex flex-col items-center gap-2">
-            <p className="text-5xl font-bold">16+</p>
-            <p className="font-light">Years of Experience</p>
+            <p className="text-4xl font-bold">16+</p>
+            <p className="text-center font-light">Years of Experience</p>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <p className="text-5xl font-bold">1000+</p>
-            <p className="font-light">Transactions Every year</p>
+            <p className="text-4xl font-bold">1000+</p>
+            <p className="text-center font-light">Transactions Every year</p>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <p className="text-5xl font-bold">24B+</p>
-            <p className="font-light">Worth of Property Sold</p>
+            <p className="text-4xl font-bold">24B+</p>
+            <p className="text-center font-light">Worth of Property Sold</p>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <p className="text-5xl font-bold">400+</p>
-            <p className="font-light">Active Listings</p>
+            <p className="text-4xl font-bold">400+</p>
+            <p className="text-center font-light">Active Listings</p>
           </div>
         </div>
-        <p className="font-light text-center">
+        <p className="pb-4 text-center font-light">
           Our proven track record of success speaks for itself. Let us leverage
           our knowledge and network to turn your property into a sold property
           in no time.
         </p>
-        <ConsultationForm className="w-2/3 mx-auto my-4" />
+        <ConsultationForm className="mx-1 lg:mx-auto lg:my-4 lg:w-2/3" />
       </section>
-      <section className="p-20 flex gap-20 flex-col justify-between">
-        <div className="p-12 bg-brand-secondary flex justify-between items-center rounded">
-          <div className="space-y-2 container font-medium w-1/2 mx-auto">
-            <h3 className="text-2xl font-bold tracking-tight text-brand-primary-foreground">
+      <section className="flex flex-col justify-between gap-20 px-2 py-12 lg:p-20">
+        <div className="mx-2 flex flex-col items-center justify-between gap-4 rounded bg-brand-secondary p-4 py-5 lg:flex-row lg:p-12">
+          <div className="container mx-auto space-y-2 font-medium lg:w-1/2">
+            <h3 className="text-center text-xl font-bold tracking-tight text-brand-primary-foreground lg:text-start lg:text-2xl">
               Maximize Your Property Reach with Our Offline Marketing Tools
             </h3>
-            <p className="font-light text-brand-secondary-foreground">
+            <p className="text-center font-light text-brand-secondary-foreground lg:text-start">
               Expand your property's visibility with our powerful offline
               marketing tools. Reach potential buyers and investors effectively,
               ensuring your property stands out in a competitive market.
             </p>
           </div>
-          <div className="w-1/2 flex justify-center">
-            <Button className="w-fit bg-brand-primary-foreground hover:bg-brand-primary-foreground/90 px-12">
+          <div className="flex justify-center lg:w-1/2">
+            <Button className="w-fit bg-brand-primary-foreground px-12 hover:bg-brand-primary-foreground/90">
               Get started today!
             </Button>
           </div>
         </div>
       </section>
-      <footer className="bg-brand-primary-foreground p-4 w-full">
-        <div className="max-w-6xl px-6 w-full gap-4 flex mx-auto justify-between items-center text-white">
+      <footer className="w-full bg-brand-primary-foreground p-4">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-2 text-xs text-white lg:px-6 lg:text-base">
           <p>Made by Chirag</p>
           <p>Copyright © 2024. Unique Properties</p>
         </div>
@@ -261,16 +261,16 @@ const ListPropertyCard: FC<ListPropertyCardSchema> = ({
   };
 
   return (
-    <Card className={cn("p-5", className)} {...props}>
-      <CardHeader className="mx-auto text-center">
+    <Card className={cn("px-2 py-2 lg:p-5", className)} {...props}>
+      <CardHeader className="lg:px-auto mx-auto px-0 text-center">
         <CardTitle className="text-2xl font-normal text-brand-primary-foreground">
           List Your Property With Us
         </CardTitle>
-        <CardDescription className="text-brand-secondary-foreground font-light">
+        <CardDescription className="font-light text-brand-secondary-foreground">
           Schedule a call with our property consultants
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-3">
         <Form {...form}>
           <form id="listPropertyForm" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid gap-6 font-light">
@@ -283,7 +283,7 @@ const ListPropertyCard: FC<ListPropertyCardSchema> = ({
                       <Input
                         type="text"
                         placeholder="Your Full name*"
-                        className="p-5 h-12 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40"
+                        className="focus:visible:border h-12 p-5 focus-visible:border-black/40 focus-visible:ring-0"
                         required
                         {...field}
                       />
@@ -300,7 +300,7 @@ const ListPropertyCard: FC<ListPropertyCardSchema> = ({
                       <Input
                         type="text"
                         placeholder="Your Email*"
-                        className="p-5 h-12 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40"
+                        className="focus:visible:border h-12 p-5 focus-visible:border-black/40 focus-visible:ring-0"
                         required
                         {...field}
                       />
@@ -328,7 +328,7 @@ const ListPropertyCard: FC<ListPropertyCardSchema> = ({
                   </FormItem>
                 )}
               />
-              <Button className="w-fit px-10 mx-auto bg-brand-primary-foreground">
+              <Button className="mx-auto w-fit bg-brand-primary-foreground px-10">
                 Next
               </Button>
             </div>
@@ -372,23 +372,23 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
 
   return (
     <Card
-      className={cn("border border-border py-5 px-2", className)}
+      className={cn("border border-border lg:px-2 lg:py-5", className)}
       {...props}
     >
-      <CardHeader className="mx-auto text-center">
-        <CardTitle className="text-3xl font-normal tracking-tight text-brand-primary-foreground">
+      <CardHeader className="lg:px-auto mx-auto px-4 text-center">
+        <CardTitle className="text-2xl font-normal tracking-tight text-brand-primary-foreground lg:text-3xl">
           Book your free consultation with one of our advisors
         </CardTitle>
-        <CardDescription className="text-[1rem] text-brand-secondary-foreground font-light">
+        <CardDescription className="text-[1rem] font-light text-brand-secondary-foreground">
           Share the details of your property so we can prepare a non-biding
           property appraisal and sell your property quickly.
         </CardDescription>
       </CardHeader>
-      <CardContent className="px-8">
+      <CardContent className="px-4 lg:px-8">
         <Form {...form}>
           <form id="consultationForm" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid gap-6 font-light">
-              <div className="grid grid-cols-2 gap-x-6 gap-y-8">
+              <div className="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-2">
                 <FormField
                   control={form.control}
                   name="firstName"
@@ -398,7 +398,7 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                         <Input
                           type="text"
                           placeholder="First Name*"
-                          className="p-5 h-12 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40"
+                          className="focus:visible:border h-12 p-5 focus-visible:border-black/40 focus-visible:ring-0"
                           required
                           {...field}
                         />
@@ -415,7 +415,7 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                         <Input
                           type="text"
                           placeholder="Last Name*"
-                          className="p-5 h-12 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40"
+                          className="focus:visible:border h-12 p-5 focus-visible:border-black/40 focus-visible:ring-0"
                           required
                           {...field}
                         />
@@ -432,7 +432,7 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                         <Input
                           type="text"
                           placeholder="Email*"
-                          className="p-5 h-12 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40"
+                          className="focus:visible:border h-12 p-5 focus-visible:border-black/40 focus-visible:ring-0"
                           required
                           {...field}
                         />
@@ -466,7 +466,7 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                 onValueChange={(value) =>
                   form.setValue("propertyInfo.location", value)
                 }
-                className="w-full h-12 py-5 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40 font-light"
+                className="focus:visible:border h-12 w-full py-5 font-light focus-visible:border-black/40 focus-visible:ring-0"
                 items={propertyLocations.flatMap((location) => ({
                   label: location,
                   value: location,
@@ -478,14 +478,14 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                 name="propertyInfo.propertyType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-lg text-brand-secondary-foreground/60 font-light">
+                    <FormLabel className="text-lg font-light text-brand-secondary-foreground/60">
                       What is the type of property? *
                     </FormLabel>
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
                         defaultValue={field.value}
-                        className="flex flex-wrap gap-x-6 gap-y-2 justify-start"
+                        className="flex flex-wrap justify-start gap-x-6 gap-y-2"
                       >
                         {propertyTypes.map((propertyType) => (
                           <FormItem
@@ -513,14 +513,14 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                 name="propertyInfo.numberOfBedrooms"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-lg text-brand-secondary-foreground/60 font-light">
+                    <FormLabel className="text-lg font-light text-brand-secondary-foreground/60">
                       Specify the number of bedrooms *
                     </FormLabel>
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
                         defaultValue={`${field.value}`}
-                        className="flex flex-wrap gap-x-6 gap-y-2 justify-start"
+                        className="flex flex-wrap justify-start gap-x-6 gap-y-2"
                       >
                         {Array.from({ length: 6 }).map((_, i) => {
                           const bedroom = i + 1;
@@ -552,10 +552,10 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                 name="service"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-lg text-brand-secondary-foreground/60 font-light">
+                    <FormLabel className="text-lg font-light text-brand-secondary-foreground/60">
                       I am looking to *
                     </FormLabel>
-                    <div className="flex flex-wrap gap-x-6 gap-y-2 justify-start">
+                    <div className="flex flex-wrap justify-start gap-x-6 gap-y-2">
                       {serviceTypes.map((serviceType, i) => (
                         <FormItem
                           key={serviceType}
@@ -576,13 +576,18 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                   </FormItem>
                 )}
               />
-              <Button
-                type="submit"
-                form="consultationForm"
-                className="w-fit bg-brand-primary-foreground hover:bg-brand-primary-foreground/90 px-12 mx-auto mt-4"
-              >
-                Submit Details
-              </Button>
+              <div className="flex flex-col justify-center gap-2">
+                <Button
+                  type="submit"
+                  form="consultationForm"
+                  className="mx-auto mt-4 w-fit bg-brand-primary-foreground px-12 hover:bg-brand-primary-foreground/90"
+                >
+                  Submit Details
+                </Button>
+                <p className="text-center text-xs text-secondary-foreground/80 lg:text-sm">
+                  By clicking submit, you agree to our Terms & Privacy Policy
+                </p>
+              </div>
             </div>
           </form>
         </Form>
