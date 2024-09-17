@@ -109,7 +109,7 @@ const processes: Pick<
 function App() {
   return (
     <>
-      <section className="flex h-screen max-h-[1080px] flex-col items-center justify-between bg-[start_-6.7rem] bg-hero-banner bg-cover bg-fixed bg-no-repeat py-12 lg:h-[720px] lg:bg-[center_-6.7rem] lg:py-16">
+      <section className="flex h-screen max-h-[1080px] flex-col items-center justify-between bg-[start_-6.7rem] bg-hero-banner bg-cover bg-fixed bg-no-repeat py-12 sm:h-[720px] md:h-[720px] lg:bg-[center_-6.7rem] lg:py-16">
         <img src="/logo.webp" className="mx-auto mb-20 h-9" />
         <div className="flex flex-col items-center justify-between gap-4 px-3 lg:flex-row lg:gap-0 lg:p-16">
           <div className="space-y-2 text-white">
@@ -146,7 +146,7 @@ function App() {
                       strokeWidth={3}
                     />
                   </div>
-                  <div className="text-brand-secondary-foreground">
+                  <div className="mr-auto text-brand-secondary-foreground">
                     <p className="text-xl font-medium">{point.title}</p>
                     <p className="font-light">{point.description}</p>
                   </div>
@@ -204,11 +204,11 @@ function App() {
           our knowledge and network to turn your property into a sold property
           in no time.
         </p>
-        <ConsultationForm className="mx-1 lg:mx-auto lg:my-4 lg:w-2/3" />
+        <ConsultationForm className="mx-1 md:mx-auto md:w-2/3 lg:my-4" />
       </section>
-      <section className="flex flex-col justify-between gap-20 px-2 py-12 lg:p-20">
-        <div className="mx-2 flex flex-col items-center justify-between gap-4 rounded bg-brand-secondary p-4 py-5 lg:flex-row lg:p-12">
-          <div className="container mx-auto space-y-2 font-medium lg:w-1/2">
+      <section className="flex flex-col justify-between gap-20 px-2 py-12 sm:px-12 md:px-20 md:py-12 md:pt-6">
+        <div className="mx-2 flex flex-col items-center justify-between gap-4 rounded bg-brand-secondary p-4 py-5 md:flex-row md:p-12">
+          <div className="container mx-auto space-y-2 font-medium md:w-1/2">
             <h3 className="text-center text-xl font-bold tracking-tight text-brand-primary-foreground lg:text-start lg:text-2xl">
               Maximize Your Property Reach with Our Offline Marketing Tools
             </h3>
@@ -218,7 +218,7 @@ function App() {
               ensuring your property stands out in a competitive market.
             </p>
           </div>
-          <div className="flex justify-center lg:w-1/2">
+          <div className="flex justify-center md:w-1/2">
             <Button className="w-fit bg-brand-primary-foreground px-12 hover:bg-brand-primary-foreground/90">
               Get started today!
             </Button>
@@ -314,16 +314,7 @@ const ListPropertyCard: FC<ListPropertyCardSchema> = ({
                 render={({ field }) => (
                   <FormItem className="grid gap-2">
                     <FormControl>
-                      <PhoneInput
-                        inputProps={{
-                          className:
-                            "py-5 h-12 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40",
-                          placeholder: "Mobile*",
-                        }}
-                        countrySelectClassName="h-12 focus-visible:ring-0 focus-visible:ring-transparent focus:visible:border focus-visible:border-black/40"
-                        defaultCountry="IN"
-                        {...field}
-                      />
+                      <PhoneInput defaultCountry="IN" {...field} />
                     </FormControl>
                   </FormItem>
                 )}
@@ -446,16 +437,7 @@ const ConsultationForm: FC<ConsultationFormProps> = ({
                   render={({ field }) => (
                     <FormItem className="grid gap-2">
                       <FormControl>
-                        <PhoneInput
-                          inputProps={{
-                            className:
-                              "py-5 h-12 focus-visible:ring-0 focus:visible:border focus-visible:border-black/40",
-                            placeholder: "Mobile*",
-                          }}
-                          countrySelectClassName="h-12 focus-visible:ring-0 focus-visible:ring-transparent focus:visible:border focus-visible:border-black/40"
-                          defaultCountry="IN"
-                          {...field}
-                        />
+                        <PhoneInput defaultCountry="IN" {...field} />
                       </FormControl>
                     </FormItem>
                   )}

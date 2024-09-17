@@ -31,36 +31,18 @@ type PhoneInputProps = Omit<
 > &
   Omit<RPNInput.Props<typeof RPNInput.default>, "onChange"> & {
     onChange: (value: RPNInput.Value) => void;
-    inputProps?: InputProps;
-    countrySelectClassName?: string;
   };
 
 const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
   React.forwardRef<React.ElementRef<typeof RPNInput.default>, PhoneInputProps>(
-    (
-      { className, inputProps, countrySelectClassName, onChange, ...props },
-      ref,
-    ) => {
-      const CustomInputComponent = React.forwardRef<
-        HTMLInputElement,
-        InputProps
-      >(({ ...inputComponentProps }, ref) => {
-        return (
-          <InputComponent {...inputComponentProps} ref={ref} {...inputProps} />
-        );
-      });
-
-      const CountrySelectComponent = (props: CountrySelectProps) => {
-        return <CountrySelect className={countrySelectClassName} {...props} />;
-      };
-
+    ({ className, onChange, ...props }, ref) => {
       return (
         <RPNInput.default
           ref={ref}
           className={cn("flex", className)}
           flagComponent={FlagComponent}
-          countrySelectComponent={CountrySelectComponent}
-          inputComponent={CustomInputComponent}
+          countrySelectComponent={CountrySelect}
+          inputComponent={InputComponent}
           onChange={onChange}
           {...props}
         />
@@ -72,7 +54,12 @@ PhoneInput.displayName = "PhoneInput";
 const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => (
     <Input
-      className={cn("rounded-e-lg rounded-s-none", className)}
+      placeholder="Mobile*"
+      className={cn(
+        "rounded-e-lg rounded-s-none",
+        "focus:visible:border h-12 py-5 focus-visible:border-black/40 focus-visible:ring-0",
+        className,
+      )}
       {...props}
       ref={ref}
     />
@@ -112,6 +99,7 @@ const CountrySelect = ({
           variant={"outline"}
           className={cn(
             "flex gap-1 rounded-e-none rounded-s-lg bg-foreground/5 px-3",
+            "focus:visible:border h-12 focus-visible:border-black/40 focus-visible:ring-0 focus-visible:ring-transparent",
             className,
           )}
           disabled={disabled}
